@@ -6,7 +6,7 @@ const Login = ({ setIsLogged, isLogged }) => {
 	const [data, setData] = React.useState(null);
 
 	const fetchData = async () => {
-		const response = await axios.get("http://localhost:7000/api/user", {
+		const response = await axios.get("/api/getUser", {
 			headers: {
 				Authorization: localStorage.getItem("token"),
 			},
@@ -23,7 +23,7 @@ const Login = ({ setIsLogged, isLogged }) => {
 		const idToken = credentialResponse.credential;
 
 		try {
-			const res = await axios.post("http://localhost:7000/auth/google", {
+			const res = await axios.post("/api/authGoogle", {
 				token: idToken,
 			});
 			const jwtToken = res.data.token;
